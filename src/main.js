@@ -4,74 +4,65 @@ import data from "./data";
 import Questions from "./questions";
 
 export default function Main() {
-  const [url, setUrl] = React.useState({
-    randomImage:
-      "https://www.tarotcardmeanings.net/images/tarotcards-large/tarot-magician.jpg",
-  });
+  
   const [dataArray, setData] = React.useState(data);
   const [quest, setQuest] = React.useState({
+    randomImage: "https://www.tarotcardmeanings.net/images/tarotcards-large/tarot-magician.jpg",   
     first: "",
     second: "",
     third: "",
     fourth: ""
   })
 
-  console.log(dataArray);
+  // console.log(dataArray);
 
-  function chooseRandomUrl() {
-    const randomNumber = Math.floor(Math.random() * dataArray.length);
-    const url = dataArray[randomNumber].img;
-    setUrl((prevUrl) => ({
-      ...prevUrl,
-      randomImage: url,
-    }));
+  // function chooseRandomUrl() {
+  //   const randomNumber = Math.floor(Math.random() * dataArray.length);
+  //   const url = dataArray[randomNumber].img;
+  //   setUrl((prevUrl) => ({
+  //     ...prevUrl,
+  //     randomImage: url,
+  //   }));
+  // }
+
+  function random(){
+    const categories = ['life', 'business', 'YesNot']
+    const randomNumber = Math.floor(Math.random() * categories.length);
+    const chooseCategory = categories[randomNumber]
+    const choose = dataArray[randomNumber].answers[chooseCategory]
+    return choose
+
   }
 
   function chooseRandomAnswer(){
-    const randomNumber = Math.floor(Math.random() * dataArray.length);
-    const answ = dataArray[randomNumber].img;
-    setUrl((prevUrl) => ({
-      ...prevUrl,
+    const randomNumberForRight = Math.floor(Math.random() * dataArray.length);
+    const answ = dataArray[randomNumberForRight].answers.YesNot;
+    const url = dataArray[randomNumberForRight].img;
+
+    setQuest(() => (
+      
+      {
       randomImage: url,
+      first: random(),
+      second: random(),
+      third: random(),
+      fourth: random()
     }));
-  }
-  }
-
-  function allNewDice() {
-    const newArray = []
-    for(let i = 0; i < 10; i++) {
-        const newDie = {
-            value: randomDieValue(),
-            held: false,
-            id: i + 1
-        }
-        newArray.push(newDie)
-    }
-    return newArray
-}
-
-
-  function generateQuestion(){
-    const setq = dataArray.map(answer => {
-
-    })
+  
   }
 
-  const quizElements = dataArray.map((question) => (
-    <Questions key={question.id} {...question} />
-  ));
 
   return (
     <div>
       <div className="container">
-        <img src={url.randomImage} alt="" className="images"></img>
+        <img src={quest.randomImage} alt="" className="images"></img>
       </div>
       <div className="button-next">
-        <button onClick={chooseRandom} className="but">
+        <button onClick={chooseRandomAnswer} className="but">
           Наступне питання
         </button>
       </div>
-       <div className="question-container">{quizElements}</div> 
+       <div className="question-container">{}</div> 
     </div>
   );
 }
