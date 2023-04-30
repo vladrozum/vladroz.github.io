@@ -1,5 +1,5 @@
 body {
-  background-color: black;
+  background-color: rgb(38, 53, 47);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -15,7 +15,12 @@ code {
 
 .container{
   text-align: center;
-  padding-top: 100px;
+  /* padding-top: 100px; */
+}
+
+.whats-true{
+  color: aliceblue;
+  font-size: 30px;
 }
 
 .images{
@@ -29,4 +34,48 @@ code {
   display: flex;
   justify-content: center;
 
+
+}
+
+.but{
+  background-color: rgb(135, 187, 232);
+  border: none;
+  height: 60px;
+  width: 300px;
+  margin-top: 40px;
+  border-radius: 5%;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.63);
+
+}
+
+.but:hover{
+  background-color: rgb(135, 199, 220);
+}
+
+.but:active{
+  background-color: rgb(145, 216, 237);
+}
+
+.question-container{
+  display:flex;
+  justify-content: space-around;
+  padding-top: 50px;
+}
+
+
+.button{
+  background-color: rgb(105, 169, 225);
+  border: none;
+  height: 100px;
+  width: 250px;
+  border-radius: 10%;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.63);
+}
+
+.button:hover{
+  background-color: rgb(134, 193, 212);
+}
+
+.button:active{
+  background-color: rgb(107, 178, 199);
 }
