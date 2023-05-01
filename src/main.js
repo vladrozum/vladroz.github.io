@@ -10,8 +10,9 @@ export default function Main() {
   function random() {
     const categories = ["life", "business", "YesNot"];
     const randomNumber = Math.floor(Math.random() * categories.length);
+    const randomNumber2 = Math.floor(Math.random() * dataArray.length);
     const chooseCategory = categories[randomNumber];
-    const choose = dataArray[randomNumber].answers[chooseCategory];
+    const choose = dataArray[randomNumber2].answers[chooseCategory];
     console.log(choose.split('\n')[0]);
     return choose;
   }
@@ -20,16 +21,20 @@ export default function Main() {
     const arrAnswer = [];
     const categories = ["life", "business", "YesNot"];
     const randomNumber = Math.floor(Math.random() * categories.length);
-    const choose = dataArray[randomNumber].answers[categories[randomNumber]];
-    const url = dataArray[randomNumber].img;
+    const randomNumber2 = Math.floor(Math.random() * dataArray.length);
+    const choose = dataArray[randomNumber2].answers[categories[randomNumber]];
+    const url = dataArray[randomNumber2].img;
     arrAnswer.push(choose, url);
     return arrAnswer;
   }
 
   function generateAllQuestions() {
+    const url = chooseRandomAnswer()[1]
+    const val = chooseRandomAnswer()[0]
     const newArray = [];
     for (let i = 0; i < 3; i++) {
       const newQuestion = {
+        url: url,
         value: random(),
         held: false,
         answer: false,
@@ -38,8 +43,8 @@ export default function Main() {
       newArray.push(newQuestion);
     }
     const rightAnswer = {
-      url: chooseRandomAnswer()[1],
-      value: chooseRandomAnswer()[0],
+      url: url,
+      value: val,
       held: false,
       answer: true,
       id: 4,
@@ -50,27 +55,35 @@ export default function Main() {
   }
 
   function generateQuestions() {
-    setQuest((oldQuestion) =>
-      oldQuestion.map((die, i) => {
-        return { value: random(), held: false, id: i + 1 };
-      })
-    );
+    setQuest(generateAllQuestions())
+
   }
+
+  
+  function answerQuestion(id) {
+    setQuest((prevQuest) => prevQuest.map(questions => {
+        return questions.id===id? 
+            {...prevQuest, held: true} : 
+            prevQuest
+    }))
+  }
+
+  console.log(quest)
   
   const quizElements = quest.map((question) => (
-    <Choice key={question.id} {...question} />
+    <Choice key={question.id} {...question} hold={()=> answerQuestion(question.id)}/>
   ));
 
   return (
     <div>
       <div className="container">
         <p className="whats-true">Що з цього правда?</p>
-        <img src={generateAllQuestions()[3].url} alt="" className="images"></img>
+        <img src={generateAllQuestions()[0].url} alt="" className="images"></img>
       </div>
       <div className="button-next">
         <button onClick={generateQuestions} className="but">
           Наступне питання
-        </button>
+        </button>   
       </div>
       <div className="question-container">{quizElements}</div>
     </div>
