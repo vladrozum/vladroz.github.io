@@ -7,11 +7,7 @@ export default function Main() {
   const [dataArray, setData] = React.useState(data);
   const [quest, setQuest] = React.useState(generateAllQuestions());
   const [set, setRight] = React.useState(false)
- 
-  // React.useEffect(()=>{
-  //   if (answerQuestion)
-  // }
-  // )
+  const [number, setNumber] = React.useState(0)
 
   
     function random() {
@@ -40,6 +36,7 @@ export default function Main() {
       const newQuestion = {
         value: random(),
         isCorrect: false,
+        id: i+1
       };
       newArray.answerOptions.push(newQuestion)
     }
@@ -47,6 +44,7 @@ export default function Main() {
     const rightAnswer = {
       value: chooseRandomAnswer()[0],
       isCorrect: true,
+      id:4
     };
    newArray.answerOptions.push(rightAnswer)
 
@@ -57,17 +55,23 @@ export default function Main() {
 
 
   function generateQuestions() {
+    setRight(false)
     setQuest(generateAllQuestions());
+
   }
 
-  function checkAnswer(isCorrect){
-    if(isCorrect){
-      setRight(true)
-    }
   
+  function checkAnswer(isCorrect, id){
+    if(isCorrect && id===4){
+      setRight(true)                                     
+      setNumber(prevNumber => prevNumber + 1)
+    }
+    else{
 
+    }
   }
 
+  console.log(quest)
 
   const styles = {
     backgroundColor : set? 'green' : ""
@@ -76,9 +80,12 @@ export default function Main() {
   return (
     <div>
       <div className="container">
+        <div className="container2">
         <p className="whats-true">Що з цього правда?</p>
+        <p className="number">{number}</p>
+        </div>
         <img
-          src={generateAllQuestions()[0].url}
+          src={quest[0].url}
           alt=""
           className="images"
         ></img>
@@ -90,7 +97,7 @@ export default function Main() {
       </div>
       <div className="question-container">
         {quest[0].answerOptions.map((question) => (
-      <button className="button" style={styles} onClick={()=> checkAnswer(question.isCorrect)}>{question.value}</button>))}
+      <button className="button" style={styles} onClick={()=> checkAnswer(question.isCorrect, question.id)}>{question.value}</button>))}
       </div>
     </div>
   );

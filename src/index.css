@@ -19,14 +19,16 @@ code {
 }
 
 .whats-true{
+  /* padding-right: 525px; */
   color: aliceblue;
   font-size: 30px;
+  text-align: center;
 }
 
 .images{
   text-align: center;
-  height: 250px;
-  width: 250px
+  height: 230px;
+  width: 230px
 }
 
 
@@ -66,7 +68,7 @@ code {
 .button{
   background-color: rgb(105, 169, 225);
   border: none;
-  height: 100px;
+  height: 80px;
   width: 250px;
   border-radius: 10%;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.63);
@@ -79,3 +81,11 @@ code {
 .button:active{
   background-color: rgb(107, 178, 199);
 }
+
+
+
+.number{
+  color: rgb(11, 179, 53);
+  left: 100px;
+}
+
