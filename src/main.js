@@ -3,8 +3,6 @@ import "./index.css";
 import data from "./data";
 
 export default function Main() {
-
-
   const [dataArray, setData] = React.useState(data);
   const [quest, setQuest] = React.useState(generateAllQuestions());
   const [set, setRight] = React.useState(false);
@@ -21,20 +19,20 @@ export default function Main() {
   }
 
   function chooseRandomAnswer() {
-    const arrAnswer = []
+    const arrAnswer = [];
     const categories = ["life", "business", "YesNot"];
     const randomNumber = Math.floor(Math.random() * categories.length);
     const randomNumber2 = Math.floor(Math.random() * dataArray.length);
     const choose = dataArray[randomNumber2].answers[categories[randomNumber]];
     const url = dataArray[randomNumber2].img;
     arrAnswer.push(url, choose);
-    console.log(arrAnswer)
-    return arrAnswer
+    console.log(arrAnswer);
+    return arrAnswer;
   }
 
   function generateAllQuestions() {
-    const a = chooseRandomAnswer()
-    console.log(a, a[0], a[1])
+    const a = chooseRandomAnswer();
+
     const newArray = { url: a[0], answerOptions: [] };
     for (let i = 0; i < 3; i++) {
       const newQuestion = {
@@ -51,6 +49,7 @@ export default function Main() {
       id: 4,
     };
     newArray.answerOptions.push(rightAnswer);
+    
     return [newArray];
   }
 
@@ -63,22 +62,21 @@ export default function Main() {
     if (isCorrect && id === 4) {
       setRight(true);
       setNumber((prevNumber) => prevNumber + 1);
-    } else {
+    } else if (!isCorrect) {
+      setGame(true);
+    }
+     else {
       if (number > 0) {
         setNumber((prevNumber) => prevNumber - 1);
-      } else if (number === 0) {
-        setGame(true);
-      }
     }
+     }}
+
+  function refresh() {
+    setRight(false);
+    setGame(false);
+    setNumber(0);
   }
 
-  function refresh(){
-    setRight(false)
-    setGame(false)
-    setNumber(0)
-  }
-
-  console.log(quest);
 
   const styles = {
     backgroundColor: set ? "green" : "",
@@ -112,7 +110,7 @@ export default function Main() {
             )}
           </div>
           <div className="question-container">
-            {quest[0].answerOptions.map((question) => (
+            {quest[0].answerOptions.sort(()=>.5-Math.random()).map((question) => (
               <button
                 className="button"
                 style={styles}
