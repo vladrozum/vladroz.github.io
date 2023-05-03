@@ -10,7 +10,7 @@ export default function Main() {
   const [game, setGame] = React.useState(false);
 
   function random() {
-    const categories = ["life", "business", "YesNot"];
+    const categories = ["life", "business"];
     const randomNumber = Math.floor(Math.random() * categories.length);
     const randomNumber2 = Math.floor(Math.random() * dataArray.length);
     const chooseCategory = categories[randomNumber];
@@ -26,7 +26,6 @@ export default function Main() {
     const choose = dataArray[randomNumber2].answers[categories[randomNumber]];
     const url = dataArray[randomNumber2].img;
     arrAnswer.push(url, choose);
-    console.log(arrAnswer);
     return arrAnswer;
   }
 
@@ -49,6 +48,11 @@ export default function Main() {
       id: 4,
     };
     newArray.answerOptions.push(rightAnswer);
+
+    const finalArr = [newArray].map(val => {
+      console.log(val.answerOptions[0].value)
+
+      })
     
     return [newArray];
   }
@@ -65,11 +69,7 @@ export default function Main() {
     } else if (!isCorrect) {
       setGame(true);
     }
-     else {
-      if (number > 0) {
-        setNumber((prevNumber) => prevNumber - 1);
-    }
-     }}
+     }
 
   function refresh() {
     setRight(false);
@@ -82,12 +82,14 @@ export default function Main() {
     backgroundColor: set ? "green" : "",
   };
 
+
+
   return (
     <div>
       {game ? (
         <div className="container">
           <div>
-            <p className="whats-true">Ви програли</p>
+            <p className={`whats-true}`}>Ви програли</p>
             <div className="button-next">
               <button onClick={refresh} className="but">
                 Почати знову
