@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./index.css";
 import data from "./data";
 
 export default function Main() {
   const [dataArray, setData] = React.useState(data);
+  const [right, setRightAnswer] = React.useState(chooseRandomAnswer()[1]);
   const [game, setGame] = React.useState(false);
   const [quest, setQuest] = React.useState(generateAllQuestions());
   const [set, setRight] = React.useState(false);
   const [number, setNumber] = React.useState(0);
   const [counter, setCounter] = React.useState(0);
-  const [questions, setQuestions] = React.useState([generateAllQuestions()[0].answerOptions.sort(() => 0.5 - Math.random())])
-
-
+  const [questions, setQuestions] = React.useState([
+    generateAllQuestions()[0].answerOptions.sort(() => 0.5 - Math.random()),
+  ]);
+  const [best, setBest] = React.useState()
 
   function random() {
     const categories = ["life", "business", "advice", "dayCard"];
@@ -34,9 +36,8 @@ export default function Main() {
   }
 
   function generateAllQuestions() {
-    const a = chooseRandomAnswer();
-
-    const newArray = { url: a[0], answerOptions: [] };
+    const answer = chooseRandomAnswer();
+    const newArray = { url: answer[0], answerOptions: [] };
     for (let i = 0; i < 3; i++) {
       const newQuestion = {
         value: random(),
@@ -47,19 +48,20 @@ export default function Main() {
     }
 
     const rightAnswer = {
-      value: a[1],
+      value: answer[1],
       isCorrect: true,
       id: 4,
     };
     newArray.answerOptions.push(rightAnswer);
-
-    return [newArray]
+    return [newArray];
   }
 
-
   function generateQuestions() {
-    setQuestions([generateAllQuestions()[0].answerOptions.sort(() => 0.5 - Math.random())])
-    setRight(false)
+    setQuestions([
+      generateAllQuestions()[0].answerOptions.sort(() => 0.5 - Math.random()),
+    ]);
+    setRight(false);
+    setRightAnswer(chooseRandomAnswer()[1]);
     setQuest(generateAllQuestions());
   }
 
@@ -84,15 +86,13 @@ export default function Main() {
     backgroundColor: set ? "green" : "",
   };
 
-
-
   React.useEffect(() => {
-
     function timer() {
-      
       if (!game) {
         setCounter((prevSec) => prevSec + 1);
+        setBest(counter)
       }
+      
     }
 
     const timerID = setInterval(() => timer(), 1000);
@@ -101,13 +101,14 @@ export default function Main() {
 
   return (
     <div>
+      {counter}
       {game ? (
         <div className="container">
-          <div>
-            <p className={`whats-true`}>Ви програли</p>
-            <p className={`whats-true`}>
-              Правильних відповідей: {number} Витрачено часу: {counter}
-            </p>
+          <div className={`whats-true`}>
+            <p>Ви програли</p>
+            <p>Правильна відповідь: <span className="rightAnswer">{right}</span></p>
+            <p>Правильних відповідей: <span className="rightAnswer">{number}</span></p>
+            <p>Витрачено часу: <span className="rightAnswer">{counter}</span></p>
             <div className="button-next">
               <button onClick={refresh} className="but">
                 Почати знову
@@ -132,16 +133,16 @@ export default function Main() {
             )}
           </div>
           <div className="question-container">
-            {questions[0] 
-              .map((question) => (
-                <button
-                  className="button"
-                  style={styles}
-                  onClick={() => checkAnswer(question.isCorrect, question.id)}
-                >
-                  {question.value}
-                </button>
-              ))}
+            {questions[0].map((question) => (
+              <button
+                className="button"
+                style={styles}
+                onClick={() => checkAnswer(question.isCorrect, question.id)}
+                key={question.id}
+              >
+                {question.value}
+              </button>
+            ))}
           </div>
         </div>
       )}

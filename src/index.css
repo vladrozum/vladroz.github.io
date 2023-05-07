@@ -92,3 +92,7 @@ code {
   left: 100px;
 }
 
+
+.rightAnswer{
+  color: rgb(34, 255, 0);
+}
