@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/vladroz.github.io/static/css/main.9ab8e6b6.css",
+    "main.js": "/vladroz.github.io/static/js/main.3ddc29bb.js",
+    "static/js/787.28cb0dcd.chunk.js": "/vladroz.github.io/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/vladroz.github.io/index.html",
+    "main.9ab8e6b6.css.map": "/vladroz.github.io/static/css/main.9ab8e6b6.css.map",
+    "main.3ddc29bb.js.map": "/vladroz.github.io/static/js/main.3ddc29bb.js.map",
+    "787.28cb0dcd.chunk.js.map": "/vladroz.github.io/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9ab8e6b6.css",
+    "static/js/main.3ddc29bb.js"
+  ]
+}
