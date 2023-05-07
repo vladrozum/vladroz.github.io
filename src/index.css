@@ -27,8 +27,8 @@ code {
 
 .images{
   text-align: center;
-  height: 230px;
-  width: 230px
+  height: 220px;
+  width: 220px
 }
 
 
@@ -40,23 +40,24 @@ code {
 }
 
 .but{
-  background-color: rgb(135, 187, 232);
+  background-color: rgb(70, 129, 180);
   border: none;
-  height: 50px;
-  width: 330px;
+  height: 30px;
+  width: 100%;
   margin-top: 40px;
   border-radius: 5%;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.63);
   font-size: 23px;
+  cursor: pointer;
 
 }
 
 .but:hover{
-  background-color: rgb(135, 199, 220);
+  background-color: rgb(102, 196, 227);
 }
 
 .but:active{
-  background-color: rgb(145, 216, 237);
+  background-color: rgb(101, 179, 202);
 }
 
 .question-container{
@@ -74,11 +75,13 @@ code {
   border-radius: 10%;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.63);
   font-size: 18px;
-  color: rgb(30, 40, 6);
+  cursor: pointer;
+  color: rgb(0, 0, 0);
 }
 
 .button:hover{
   background-color: rgb(134, 193, 212);
+  
 }
 
 .button:active{
@@ -95,4 +98,10 @@ code {
 
 .rightAnswer{
   color: rgb(34, 255, 0);
+}
+
+
+.lose{
+  color: red;
+  font-size: 40px;
 }

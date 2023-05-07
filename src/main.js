@@ -7,7 +7,7 @@ export default function Main() {
   const [dataArray, setData] = React.useState(data);
 
   // right answer
-  const [right, setRightAnswer] = React.useState();
+  // const [right, setRightAnswer] = React.useState('');
 
   // win
   const [game, setGame] = React.useState(false);
@@ -22,7 +22,7 @@ export default function Main() {
   const [number, setNumber] = React.useState(0);
 
   // timer
-  const [counter, setCounter] = React.useState(0);
+  const [counter, setCounter] = React.useState(1);
 
   // All randomed answer options
   const [questions, setQuestions] = React.useState([
@@ -38,6 +38,7 @@ export default function Main() {
     const choose = dataArray[randomNumber2].answers[chooseCategory];
     return choose;
   }
+
 
   // Choose 1 right answer options
   function chooseRandomAnswer() {
@@ -79,8 +80,9 @@ export default function Main() {
       generateAllQuestions()[0].answerOptions.sort(() => 0.5 - Math.random()),
     ]);
     setRight(false);
-    setQuest(generateAllQuestions());
+    setQuest(generateAllQuestions())
   }
+
 
   // Check answer
   function checkAnswer(isCorrect, id) {
@@ -88,17 +90,17 @@ export default function Main() {
       setRight(true);
       setNumber((prevNumber) => prevNumber + 1);
     } else if (!isCorrect) {
-      setRightAnswer(quest[0].answerOptions[3].value);
       setGame(true);
     }
   }
+
 
   // Refresh after endgame
   function refresh() {
     setRight(false);
     setGame(false);
     setNumber(0);
-    setCounter(0);
+    setCounter(1);
     generateQuestions();
   }
 
@@ -124,16 +126,16 @@ export default function Main() {
       {game ? (
         <div className="container">
           <div className={`whats-true`}>
-            <p>Ви програли</p>
-            <p>
+            <p className="lose">Ви програли</p>
+            {/* <p>
               Правильна відповідь: <span className="rightAnswer">{right}</span>
-            </p>
+            </p> */}
             <p>
               Правильних відповідей:{" "}
               <span className="rightAnswer">{number}</span>
             </p>
             <p>
-              Витрачено часу: <span className="rightAnswer">{counter}</span>
+              Витрачено часу: <span className="rightAnswer">{counter} (Середнє: {number === 0 ? 0 : Math.ceil(counter/number)} на одне питання)</span>
             </p>
             <div className="button-next">
               <button onClick={refresh} className="but">
@@ -147,7 +149,7 @@ export default function Main() {
           <div className="container2">
             <p className="whats-true">Що з цього правда?</p>
             <p className="number">
-              {number} {counter}
+              Вгадала: {number}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Час: {counter}
             </p>
           </div>
           <img src={quest[0].url} alt="" className="images"></img>
