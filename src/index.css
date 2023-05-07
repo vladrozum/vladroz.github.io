@@ -21,7 +21,7 @@ code {
 .whats-true{
   /* padding-right: 525px; */
   color: aliceblue;
-  font-size: 30px;
+  font-size: 28px;
   text-align: center;
 }
 
@@ -69,7 +69,7 @@ code {
 .button{
   background-color: rgb(105, 169, 225);
   border: none;
-  height: 100px;
+  height: 110px;
   width: 250px;
   border-radius: 10%;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.63);

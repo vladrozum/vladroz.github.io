@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.css";
 import data from "./data";
 
 export default function Main() {
   const [dataArray, setData] = React.useState(data);
+  const [game, setGame] = React.useState(false);
   const [quest, setQuest] = React.useState(generateAllQuestions());
   const [set, setRight] = React.useState(false);
   const [number, setNumber] = React.useState(0);
-  const [game, setGame] = React.useState(false);
+  const [counter, setCounter] = React.useState(0);
+  const [questions, setQuestions] = React.useState([generateAllQuestions()[0].answerOptions.sort(() => 0.5 - Math.random())])
+
+
 
   function random() {
-    const categories = ["life", "business"];
+    const categories = ["life", "business", "advice", "dayCard"];
     const randomNumber = Math.floor(Math.random() * categories.length);
     const randomNumber2 = Math.floor(Math.random() * dataArray.length);
     const chooseCategory = categories[randomNumber];
@@ -20,7 +24,7 @@ export default function Main() {
 
   function chooseRandomAnswer() {
     const arrAnswer = [];
-    const categories = ["life", "business", "YesNot"];
+    const categories = ["life", "business", "advice", "dayCard"];
     const randomNumber = Math.floor(Math.random() * categories.length);
     const randomNumber2 = Math.floor(Math.random() * dataArray.length);
     const choose = dataArray[randomNumber2].answers[categories[randomNumber]];
@@ -49,16 +53,13 @@ export default function Main() {
     };
     newArray.answerOptions.push(rightAnswer);
 
-    const finalArr = [newArray].map(val => {
-      console.log(val.answerOptions[0].value)
-
-      })
-    
-    return [newArray];
+    return [newArray]
   }
 
+
   function generateQuestions() {
-    setRight(false);
+    setQuestions([generateAllQuestions()[0].answerOptions.sort(() => 0.5 - Math.random())])
+    setRight(false)
     setQuest(generateAllQuestions());
   }
 
@@ -69,14 +70,15 @@ export default function Main() {
     } else if (!isCorrect) {
       setGame(true);
     }
-     }
+  }
 
   function refresh() {
     setRight(false);
     setGame(false);
     setNumber(0);
+    setCounter(0);
+    generateQuestions();
   }
-
 
   const styles = {
     backgroundColor: set ? "green" : "",
@@ -84,12 +86,28 @@ export default function Main() {
 
 
 
+  React.useEffect(() => {
+
+    function timer() {
+      
+      if (!game) {
+        setCounter((prevSec) => prevSec + 1);
+      }
+    }
+
+    const timerID = setInterval(() => timer(), 1000);
+    return () => clearInterval(timerID);
+  }, [generateAllQuestions]);
+
   return (
     <div>
       {game ? (
         <div className="container">
           <div>
-            <p className={`whats-true}`}>Ви програли</p>
+            <p className={`whats-true`}>Ви програли</p>
+            <p className={`whats-true`}>
+              Правильних відповідей: {number} Витрачено часу: {counter}
+            </p>
             <div className="button-next">
               <button onClick={refresh} className="but">
                 Почати знову
@@ -101,10 +119,12 @@ export default function Main() {
         <div className="container">
           <div className="container2">
             <p className="whats-true">Що з цього правда?</p>
-            <p className="number">{number}</p>
+            <p className="number">
+              {number} {counter}
+            </p>
           </div>
           <img src={quest[0].url} alt="" className="images"></img>
-          <div className="button-next">
+          <div className={`button-next`}>
             {set && (
               <button onClick={generateQuestions} className="but">
                 Наступне питання
@@ -112,15 +132,16 @@ export default function Main() {
             )}
           </div>
           <div className="question-container">
-            {quest[0].answerOptions.sort(()=>.5-Math.random()).map((question) => (
-              <button
-                className="button"
-                style={styles}
-                onClick={() => checkAnswer(question.isCorrect, question.id)}
-              >
-                {question.value}
-              </button>
-            ))}
+            {questions[0] 
+              .map((question) => (
+                <button
+                  className="button"
+                  style={styles}
+                  onClick={() => checkAnswer(question.isCorrect, question.id)}
+                >
+                  {question.value}
+                </button>
+              ))}
           </div>
         </div>
       )}
