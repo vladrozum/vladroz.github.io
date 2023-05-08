@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/vlad.github.io/static/css/main.9ab8e6b6.css",
+    "main.js": "/vlad.github.io/static/js/main.d4b17b7a.js",
+    "static/js/787.28cb0dcd.chunk.js": "/vlad.github.io/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/vlad.github.io/index.html",
+    "main.9ab8e6b6.css.map": "/vlad.github.io/static/css/main.9ab8e6b6.css.map",
+    "main.d4b17b7a.js.map": "/vlad.github.io/static/js/main.d4b17b7a.js.map",
+    "787.28cb0dcd.chunk.js.map": "/vlad.github.io/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9ab8e6b6.css",
+    "static/js/main.d4b17b7a.js"
+  ]
+}
