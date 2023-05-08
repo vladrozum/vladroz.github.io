@@ -129,8 +129,8 @@ export default function Main() {
             <p className="lose">Ви програли</p>
             {/* <p>
               Правильна відповідь: <span className="rightAnswer">{right}</span>
-            </p> */}
-            <p>
+            </p> */}  
+            <p>      
               Правильних відповідей:{" "}
               <span className="rightAnswer">{number}</span>
             </p>
