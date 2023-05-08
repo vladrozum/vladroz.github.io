@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/vladrozum.github.io/static/css/main.9ab8e6b6.css",
-    "main.js": "/vladrozum.github.io/static/js/main.d4b17b7a.js",
-    "static/js/787.28cb0dcd.chunk.js": "/vladrozum.github.io/static/js/787.28cb0dcd.chunk.js",
-    "index.html": "/vladrozum.github.io/index.html",
-    "main.9ab8e6b6.css.map": "/vladrozum.github.io/static/css/main.9ab8e6b6.css.map",
-    "main.d4b17b7a.js.map": "/vladrozum.github.io/static/js/main.d4b17b7a.js.map",
-    "787.28cb0dcd.chunk.js.map": "/vladrozum.github.io/static/js/787.28cb0dcd.chunk.js.map"
+    "main.css": "vladrozum.github.io/static/css/main.9ab8e6b6.css",
+    "main.js": "vladrozum.github.io/static/js/main.d4b17b7a.js",
+    "static/js/787.28cb0dcd.chunk.js": "vladrozum.github.io/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "vladrozum.github.io/index.html",
+    "main.9ab8e6b6.css.map": "vladrozum.github.io/static/css/main.9ab8e6b6.css.map",
+    "main.d4b17b7a.js.map": "vladrozum.github.io/static/js/main.d4b17b7a.js.map",
+    "787.28cb0dcd.chunk.js.map": "vladrozum.github.io/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9ab8e6b6.css",
