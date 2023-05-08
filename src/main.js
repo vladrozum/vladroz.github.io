@@ -92,7 +92,7 @@ export default function Main() {
     } else if (!isCorrect) {
       setGame(true);
     }
-  }
+  }    
 
 
   // Refresh after endgame
