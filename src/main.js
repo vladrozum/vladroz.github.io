@@ -29,6 +29,7 @@ export default function Main() {
     generateAllQuestions()[0].answerOptions.sort(() => 0.5 - Math.random()),
   ]);
 
+  
   // Choose 3 wrong random answer options
   function random() {
     const categories = ["life", "business", "advice", "dayCard"];
@@ -92,7 +93,7 @@ export default function Main() {
     } else if (!isCorrect) {
       setGame(true);
     }
-  }
+  }    
 
 
   // Refresh after endgame
@@ -122,17 +123,13 @@ export default function Main() {
 
   return (
     <div>
-      {counter}
       {game ? (
         <div className="container">
           <div className={`whats-true`}>
             <p className="lose">Ви програли</p>
-            {/* <p>
-              Правильна відповідь: <span className="rightAnswer">{right}</span>
-            </p> */}
-            <p>
-              Правильних відповідей:{" "}
-              <span className="rightAnswer">{number}</span>
+            <p>      
+              Правильних відповідей:
+              <span className="rightAnswer"> {number}</span>
             </p>
             <p>
               Витрачено часу: <span className="rightAnswer">{counter} (Середнє: {number === 0 ? 0 : Math.ceil(counter/number)} на одне питання)</span>
@@ -159,7 +156,7 @@ export default function Main() {
                 Наступне питання
               </button>
             )}
-          </div>
+          </div>  
           <div className="question-container">
             {questions[0].map((question) => (
               <button
