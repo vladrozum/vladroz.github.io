@@ -12,7 +12,7 @@ export default function ChatGPT() {
   async function gpt(event) {
     event.preventDefault();
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: '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',
     });
     const openai = new OpenAIApi(configuration);
     if (query && query.length > 0) {
@@ -90,6 +90,9 @@ export default function ChatGPT() {
                 className="image"
                 src="https://www.tarotcardmeanings.net/images/tarotcards-large/tarot-magician.jpg"
               ></img>
+                <button className="buttongpt" onClick={refresh}>
+                  Запитати ще раз
+                </button>
             </div>
           );
         } else {
