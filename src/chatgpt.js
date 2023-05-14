@@ -1,11 +1,6 @@
 import React from "react";
 const { Configuration, OpenAIApi } = require("openai");
 
-// const webpack = require('webpack');
-// const dotenv = require('dotenv');
-// const fs = require('fs'); // to check if the file exists
-// const path = require('path'); // to get the current path
-
 
 export default function ChatGPT() {
   const [query, setQuery] = React.useState();
@@ -14,14 +9,12 @@ export default function ChatGPT() {
   const [receive, setRecieve] = React.useState(false);
   const [sec, setSec] = React.useState(0);
   const [input, setInput] = React.useState(true)
-  const apiKey = "sk-flULLzENxB9qIirS720MT3BlbkFJaak7mR9sq1XM4fVydSI"
 
-  console.log(process.env.OPENAI_API_KEY)
 
   async function gpt(event) {
     event.preventDefault();
     const configuration = new Configuration({
-      apiKey: apiKey + '6',
+      apiKey: process.env.REACT_APP_SECRET
     });
     const openai = new OpenAIApi(configuration);
     if (query && query.length > 0) {
