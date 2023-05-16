@@ -12,33 +12,39 @@ export default function ChatGPT() {
 
   async function gpt(event) {
     event.preventDefault();
-    const api = decodeURIComponent((window.atob(process.env.REACT_APP_SECRET))).slice(1, -1)
-    const configuration = new Configuration({
-      apiKey: api
-    });
-    const openai = new OpenAIApi(configuration);
-    if (query && query.length > 0) {
-      setSec(0);
-      setSubmit(true);
-
-      const response = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: query,
-        max_tokens: 512,
-        temperature: 0.5,
+    try {
+      const api = decodeURIComponent((window.atob(process.env.REACT_APP_SECRET))).slice(1, -1)
+      const configuration = new Configuration({
+        apiKey: api
       });
-
-      if (response.status === 200 && response.data.choices.length > 0) {
-        setReply(response.data.choices[0].text);
-        setRecieve(true);
-        // setReply("Something wrong!");
+      const openai = new OpenAIApi(configuration);
+      if (query && query.trim().length > 0) {
+        setSec(0);
+        setSubmit(true);
+  
+        const response = await openai.createCompletion({
+          model: "text-davinci-003",
+          prompt: query,
+          max_tokens: 512,
+          temperature: 0.5,
+        });
+  
+        if (response.status === 200 && response.data.choices.length > 0) {
+          setReply(response.data.choices[0].text);
+          setRecieve(true);
+          // setReply("Something wrong!");
+        } else {
+          setReply("Something wrong!");
+          // setReply(response.data.choices[0].text);
+          setRecieve(true);
+        }
       } else {
-        setReply("Something wrong!");
-        // setReply(response.data.choices[0].text);
-        setRecieve(true);
+        setInput(false)
       }
-    } else {
-      setInput(false)
+      
+    } catch{
+      setReply('Карти втомилися! Спробуйте пізніше')
+      setRecieve(true)
     }
   }
 
