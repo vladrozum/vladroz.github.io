@@ -16,6 +16,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Main />} />
           <Route path="chatGPT" element={<ChatGPT />} />
+
         </Route>
       </Routes>
     </BrowserRouter>

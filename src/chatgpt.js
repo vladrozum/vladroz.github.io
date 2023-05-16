@@ -10,11 +10,11 @@ export default function ChatGPT() {
   const [sec, setSec] = React.useState(0);
   const [input, setInput] = React.useState(true)
 
-
   async function gpt(event) {
     event.preventDefault();
+    const api = decodeURIComponent((window.atob(process.env.REACT_APP_SECRET))).slice(1, -1)
     const configuration = new Configuration({
-      apiKey: process.env.REACT_APP_SECRET
+      apiKey: api
     });
     const openai = new OpenAIApi(configuration);
     if (query && query.length > 0) {
