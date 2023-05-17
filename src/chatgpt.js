@@ -32,10 +32,8 @@ export default function ChatGPT() {
         if (response.status === 200 && response.data.choices.length > 0) {
           setReply(response.data.choices[0].text);
           setRecieve(true);
-          // setReply("Something wrong!");
         } else {
           setReply("Something wrong!");
-          // setReply(response.data.choices[0].text);
           setRecieve(true);
         }
       } else {

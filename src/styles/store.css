@@ -1,0 +1,109 @@
+
+
+.name{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.containeri{
+    display: inline-block;
+    text-align: center;
+    justify-content: space-around;
+    margin-left: 250px;
+    margin-top: 70px;
+    background-color: aliceblue;
+    width: 300px;
+    height: 500px;
+}
+
+.images{
+    margin-top: 20px;
+    width: 250px;
+    height: 250px;
+    mix-blend-mode: multiply;
+}
+
+
+.description{
+    color: rgba(0, 0, 0, 0.8);
+}
+
+
+.price{
+    font-weight: bold;
+    font-size: 25px;
+    color: rgba(204, 0, 0, 0.875);
+    text-align: start;
+}
+
+.oldPrice{
+    color: rgb(66, 95, 22);
+    font-size: 12px;
+    text-decoration: line-through;
+}
+
+.buy{
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    mix-blend-mode: multiply;
+
+}
+
+.priceBuy{
+    text-align: center;
+    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1px 100px 50px;
+    align-items: center;
+}
+
+.containerBasket{
+    background-color: aliceblue;
+    width: 100px;
+    height: 400px;
+    margin-left: 30px;
+    position: fixed;
+    margin-top: 50px;
+    justify-content: center;
+    text-align: center;
+}
+
+.containerAll{
+    display: flex;
+}
+
+.containerInfo{
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    justify-content: space-around;
+    grid-column-gap: 10em;
+}
+
+
+.order{
+    margin-top: 300%;
+    border: none;
+    border-radius: 5%;
+    background-color: #1db51dca;
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+}
+
+.orderNumb{
+    text-align: center;
+    font-size: 30px;
+}
+
+
+.containerOrder{
+    background-color: #f5f5f5;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.priceOrder{
+    font-size: 24px;
+    margin-left: 40px;
+}

@@ -11,6 +11,9 @@ export default function Layout(){
           <li>
             <Link to="/ChatGPT" className="urls">Питання картам</Link>
           </li>
+          <li>
+            <Link to="/Store" className="urls">Магазинчик</Link>
+          </li>
         </ul>
       </nav>
 
