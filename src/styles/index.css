@@ -284,8 +284,10 @@ code {
   justify-content:space-around;
   list-style: none;
   background-color: azure;
-  height: 30px;
+  height: 60px;
   font-size: 20px;
+  align-items: center;
+  margin-top: -10px;
 }
 
 .urls{

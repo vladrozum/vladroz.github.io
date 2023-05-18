@@ -143,7 +143,6 @@ export default function Main() {
       ) : (
         <div className="container">
           <div className="container2">
-            <p className="whats-true">Що з цього правда?</p>
             <p className="number">
               Вгадала: {number}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Час: {counter}
             </p>
