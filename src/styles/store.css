@@ -119,8 +119,10 @@
 
 
 .ordersBuy{    
+    display: flex;
     white-space: pre-line;
     padding-left: 40px;
+    width: 200px;
     font-size: 25px;
 
 }
@@ -133,6 +135,7 @@
 
 
 .containerCart{
+    align-items: center;
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
@@ -188,7 +191,12 @@
 }
 
 
-.description{
-    /* background-color: blue; */
-    justify-content: right;
+.cart{
+    font-weight: bold;
+}
+
+
+.discount{
+    position: absolute;
+    margin-top: 50px;
 }

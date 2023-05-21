@@ -11,9 +11,11 @@ export default function Store() {
   const [price, setPrice] = React.useState(0);
   const [pay, setPay] = React.useState(false);
   const [counter, setCounter] = React.useState(0);
-  const [number, setNumber] = React.useState();
+  const [number, setNumber] = React.useState(false);
 
-  function addTo(id) {
+  
+
+  function addTo(id) { 
     if (counter === 8) {
       alert("Нашо тобі стіки карт?");
     } else {
@@ -34,29 +36,36 @@ export default function Store() {
   function setOrder() {
     if (counter > 0 && cart.length>0) {
       setPay(!pay);
+      setNumber(true)
     } else {
       alert("Ти нічого не купила!!!!!!!!!!");
     }
   }
 
   function orderNumber() {
-    let genOrder = [];
-    const numbers = "0123456789";
-    for (let i = 0; i < 25; i++) {
-      genOrder.push(Math.floor(Math.random() * numbers.length));
+    if(orderNumber===false){
+
+      let genOrder = [];
+      const numbers = "0123456789";
+      for (let i = 0; i < 25; i++) {
+        genOrder.push(Math.floor(Math.random() * numbers.length));
+      }
+      localStorage.setItem("orderNumber", genOrder.join(""));
     }
-    setNumber(genOrder.join(""));
   }
 
   function del(id) {
-    // setCart(cart.splice(id, 1));
-    // setPrice((prevPrice) => prevPrice - data[id - 1].price);
-    // setCounter((prevCounter) => prevCounter - 1);
+    // alert('Куда видаляєш? Купляй давай')
+    // alert(id)
+    const newCart = cart.splice(id)
+    setCart(newCart)
+    console.log(cart)
   }
 
   const info = data.map((item) => {
     return (
       <div className="containeri">
+          <p className="discount">{item.oldPrice + 1 === '1'? '' : `${Math.ceil(Math.abs(100 - (item.price*100)/item.oldPrice))}%`}</p>
         <img src={item.image} className="images"></img>
         <p className="name">{item.name}</p>
         <p className="description">{item.description}</p>
@@ -75,7 +84,7 @@ export default function Store() {
     );
   });
 
-  const carts = cart.map((prevCart) => {
+  const carts = cart.map((prevCart, i) => {
     return (
       <div>
         <div className="orders">
@@ -83,7 +92,7 @@ export default function Store() {
           <span className="priceCart">{`${prevCart.price} грн`}</span>
           <img
             className="trash"
-            onClick={() => del(prevCart.id)}
+            onClick={() => del(i+1)}
             src={trash}
           ></img>
         </div>
@@ -95,7 +104,9 @@ export default function Store() {
     return (
       <div>
         <div className="containerCart">
+          <div className="containerr">
           <div className="ordersBuy">{prevCart.dataOrder}</div>
+          </div>
           <div className="description">{prevCart.description}</div>
           <div className="priceCartBuy">{prevCart.price}</div>
         </div>
@@ -107,7 +118,7 @@ export default function Store() {
     <div>
       {pay ? (
         <div className="containerOrder">
-          <p className="orderNumb">Замовлення №{number}</p>
+          <p className="orderNumb">Замовлення №{localStorage.getItem("orderNumber")}</p>
           {cartsBuy}
             <p className="priceOrder">
           <span className="price">{price}</span> грн
@@ -122,9 +133,11 @@ export default function Store() {
         </div>
       ) : (
         <div className="containerAll">
+          
           <div className="containerBasket">
+          <p className="cart">Корзинка</p>
             {carts}
-            <button
+            {counter>0? <button
               className="order"
               onClick={() => {
                 setOrder();
@@ -132,7 +145,7 @@ export default function Store() {
               }}
             >
               В кошик
-            </button>
+            </button> : ''}
           </div>
           <div className="containerInfo">{info}</div>
         </div>
