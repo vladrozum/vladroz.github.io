@@ -11,7 +11,6 @@ export default function Store() {
   const [price, setPrice] = React.useState(0);
   const [pay, setPay] = React.useState(false);
   const [counter, setCounter] = React.useState(0);
-  const [number, setNumber] = React.useState(false);
 
   
 
@@ -25,7 +24,7 @@ export default function Store() {
           dataOrder: `${data[id - 1].name}\n`,
           price: data[id - 1].price,
           description: data[id - 1].description,
-          id: id,
+          id: data[id-1].id,
         },
       ]);
       setPrice((prevPrice) => prevPrice + data[id - 1].price);
@@ -36,30 +35,27 @@ export default function Store() {
   function setOrder() {
     if (counter > 0 && cart.length>0) {
       setPay(!pay);
-      setNumber(true)
     } else {
       alert("Ти нічого не купила!!!!!!!!!!");
     }
   }
 
-  function orderNumber() {
-    if(orderNumber===false){
-
+  function orderNumber() {  
       let genOrder = [];
       const numbers = "0123456789";
       for (let i = 0; i < 25; i++) {
         genOrder.push(Math.floor(Math.random() * numbers.length));
+      
       }
       localStorage.setItem("orderNumber", genOrder.join(""));
-    }
   }
 
   function del(id) {
     // alert('Куда видаляєш? Купляй давай')
-    // alert(id)
-    const newCart = cart.splice(id)
-    setCart(newCart)
-    console.log(cart)
+    const abc = cart.splice(id, 1)
+    console.log()
+    setCounter(prevCount => prevCount - 1)
+    setPrice(prevPrice => prevPrice - abc[0].price)
   }
 
   const info = data.map((item) => {
@@ -70,7 +66,7 @@ export default function Store() {
         <p className="name">{item.name}</p>
         <p className="description">{item.description}</p>
         <div className="priceBuy">
-          <p className="price">{item.price} грн</p>
+          <p className="price">{item.price}<span className="priceCart">₴</span></p>
           <p className="oldPrice">{item.oldPrice}</p>
           <img
             onClick={() => addTo(item.id)}
@@ -89,10 +85,10 @@ export default function Store() {
       <div>
         <div className="orders">
           {prevCart.dataOrder}
-          <span className="priceCart">{`${prevCart.price} грн`}</span>
+          <span className="priceCart">{prevCart.price} ₴</span>
           <img
             className="trash"
-            onClick={() => del(i+1)}
+            onClick={() => del(i)}
             src={trash}
           ></img>
         </div>
@@ -108,7 +104,7 @@ export default function Store() {
           <div className="ordersBuy">{prevCart.dataOrder}</div>
           </div>
           <div className="description">{prevCart.description}</div>
-          <div className="priceCartBuy">{prevCart.price}</div>
+          <div className="priceCartBuy">{prevCart.price}<span className="priceCart">₴</span></div>
         </div>
       </div>
     );
@@ -121,7 +117,7 @@ export default function Store() {
           <p className="orderNumb">Замовлення №{localStorage.getItem("orderNumber")}</p>
           {cartsBuy}
             <p className="priceOrder">
-          <span className="price">{price}</span> грн
+          <span className="price">{price}<span className="priceCart">₴</span></span> 
           </p>
           <div className="ag">
           <button className="disagree" onClick={setOrder}>

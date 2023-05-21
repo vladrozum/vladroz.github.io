@@ -12,7 +12,7 @@
     margin-left: 250px;
     margin-top: 50px;
     background-color: aliceblue;
-    width: 300px;
+    width: 320px;
     height: 500px;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .oldPrice{
-    color: rgb(66, 95, 22);
+    color: rgba(77, 77, 77, 0.693);
     font-size: 12px;
     text-decoration: line-through;
 }
@@ -139,6 +139,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    border:ridge 1px rgba(0, 0, 0, 0.039);
 }
 
 
@@ -197,6 +198,11 @@
 
 
 .discount{
+    background-color: #ff3636;
     position: absolute;
     margin-top: 50px;
+    font-size: 30px;
+    color: #ffffff;
+    border-radius: 25%;
+    margin-left: 10px;
 }
