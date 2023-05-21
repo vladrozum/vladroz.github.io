@@ -206,3 +206,23 @@
     border-radius: 25%;
     margin-left: 10px;
 }
+
+
+
+@media only screen and (max-width: 600px) {
+    .containerInfo{
+        display: block;
+    }
+    .nav{
+        width: 145%;
+    }
+
+    .containerOrder{
+        width: 135%;
+        padding: 0;
+    }
+    .description:nth-child(1){
+        display: none;
+    }
+
+  }
