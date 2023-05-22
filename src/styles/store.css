@@ -226,3 +226,27 @@
     }
 
   }
+
+
+  .containers{
+    display: flex;
+    justify-content: space-between;
+    width: 240%;
+}
+
+
+.input{
+    margin: 10%;
+    width: 300px;
+    height: 70px;
+
+}
+
+
+.inputs{
+    display: grid;
+    grid-template-columns: 350px 350px;    
+    justify-content: space-evenly;
+
+
+}

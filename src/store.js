@@ -13,6 +13,7 @@ export default function Store() {
   const [counter, setCounter] = React.useState(0);
   const [form, setForm] = React.useState();
   const [zamoviti, setZamoviti] = React.useState(false);
+  const [query, setQuery] = React.useState();
 
   function addTo(id) {
     if (counter === 8) {
@@ -59,6 +60,11 @@ export default function Store() {
     const abc = cart.splice(id, 1);
     setCounter((prevCount) => prevCount - 1);
     setPrice((prevPrice) => prevPrice - abc[0].price);
+  }
+
+  function setZakaz() {
+    setZamoviti(!zamoviti);
+    setPay(false);
   }
 
   const info = data.map((item) => {
@@ -108,9 +114,7 @@ export default function Store() {
     return (
       <div>
         <div className="containerCart">
-          <div className="containerr">
-            <div className="ordersBuy">{prevCart.dataOrder}</div>
-          </div>
+          <div className="ordersBuy">{prevCart.dataOrder}</div>
           <div className="description">{prevCart.description}</div>
           <div className="priceCartBuy">
             {prevCart.price}
@@ -123,79 +127,140 @@ export default function Store() {
 
   return (
     <div>
-      {pay ? (
-        <div className="containerOrder">
-          <p className="orderNumb">
-            Замовлення №{localStorage.getItem("orderNumber")}
-          </p>
-          {cartsBuy}
-          {form ? (
-            <div className="gift">
-              {form.giftValue === "nothing" ? "" : form.giftValue}
-            </div>
-          ) : (
-            ""
-          )}
-          <p className="priceOrder">
-            <span className="price">
-              {price}
-              <span className="priceCart">₴</span>
-            </span>
-          </p>
-          {price > 3000 ? (
-            <form>
-              <input
-                type="radio"
-                id="cover"
-                name="giftValue"
-                value="cover"
-                onChange={handleChange}
-              />
-              <label htmlFor="cover">Коврик для Таро</label>
-              <br />
+      {(() => {
+        if (pay) {
+          return (
+            <div className="containerOrder">
+              {cartsBuy}
+              {form ? (
+                <div className="containerCart">
+                  {form.giftValue === "nothing" ? (
+                    ""
+                  ) : (
+                    <div>
+                      <div className="containers">
+                        <div className="ordersBuy">{form.giftValue}</div>
+                        <div className="description">
+                          Коврик щоб гадилось добре
+                        </div>
+                        <div className="priceCartBuy">
+                          0
+                          <span className="priceCart">₴</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                ""
+              )}
+              <p className="priceOrder">
+                <span className="price">
+                  {price}
+                  <span className="priceCart">₴</span>
+                </span>
+              </p>
+              {price > 3000 ? (
+                <form>
+                  <input
+                    type="radio"
+                    id="cover"
+                    name="giftValue"
+                    value="Коврик для гадання"
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="cover">Коврик для Таро</label>
+                  <br />
 
-              <input
-                type="radio"
-                id="nothing"
-                name="giftValue"
-                value="nothing"
-                onChange={handleChange}
-              />
-              <label htmlFor="nothing">Нічого не треба</label>
-              <br />
-            </form>
-          ) : (
-            ""
-          )}
-          <div className="ag">
-            <button className="disagree" onClick={setOrder}>
-              Назад
-            </button>
-            <button className="agree">Замовити</button>
-          </div>
-        </div>
-      ) : (
-        <div className="containerAll">
-          <div className="containerBasket">
-            <p className="cart">Корзинка</p>
-            {carts}
-            {counter > 0 ? (
-              <button
-                className="order"
-                onClick={() => {
-                  setOrder();
-                  orderNumber();
-                }}
-              >
-                В кошик
-              </button>
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="containerInfo">{info}</div>
-        </div>
-      )}
+                  <input
+                    type="radio"
+                    id="nothing"
+                    name="giftValue"
+                    value="nothing"
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="nothing">Нічого не треба</label>
+                  <br />
+                </form>
+              ) : (
+                ""
+              )}
+              <div className="ag">
+                <button className="disagree" onClick={setOrder}>
+                  Назад
+                </button>
+                <button className="agree" onClick={setZakaz}>
+                  Замовити
+                </button>
+              </div>
+            </div>
+          );
+        } else if (zamoviti) {
+          return (
+            <div>
+              <p className="orderNumb">
+                Замовлення №{localStorage.getItem("orderNumber")}
+              </p>
+              <form>
+                <label  className="inputs">
+                  <input
+                  placeholder="Ім'я"
+                    className={`input`}
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                  />
+                    <input
+                      placeholder="Прізвище"
+                      className={`input`}
+                      type="text"
+                      value={query}
+                      onChange={(e) => setQuery(e.target.value)}
+                    />
+                  <input
+                    placeholder="Номер телефону"
+                    className={`input`}
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                  />
+                  <input
+                    placeholder="Електронна пошта"
+                    className={`input`}
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                  />
+                </label>
+              </form>
+                <input type="submit" className="sumbit" />
+            </div>
+          );
+        } else {
+          return (
+            <div className="containerAll">
+              <div className="containerBasket">
+                <p className="cart">Корзинка</p>
+                {carts}
+                {counter > 0 ? (
+                  <button
+                    className="order"
+                    onClick={() => {
+                      setOrder();
+                      orderNumber();
+                    }}
+                  >
+                    В кошик
+                  </button>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className="containerInfo">{info}</div>
+            </div>
+          );
+        }
+      })()}
     </div>
   );
 }
