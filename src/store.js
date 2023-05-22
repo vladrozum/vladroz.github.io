@@ -11,10 +11,10 @@ export default function Store() {
   const [price, setPrice] = React.useState(0);
   const [pay, setPay] = React.useState(false);
   const [counter, setCounter] = React.useState(0);
+  const [form, setForm] = React.useState();
+  const [zamoviti, setZamoviti] = React.useState(false);
 
-  
-
-  function addTo(id) { 
+  function addTo(id) {
     if (counter === 8) {
       alert("Нашо тобі стіки карт?");
     } else {
@@ -24,7 +24,7 @@ export default function Store() {
           dataOrder: `${data[id - 1].name}\n`,
           price: data[id - 1].price,
           description: data[id - 1].description,
-          id: data[id-1].id,
+          id: data[id - 1].id,
         },
       ]);
       setPrice((prevPrice) => prevPrice + data[id - 1].price);
@@ -33,40 +33,52 @@ export default function Store() {
   }
 
   function setOrder() {
-    if (counter > 0 && cart.length>0) {
+    if (counter > 0 && cart.length > 0) {
       setPay(!pay);
     } else {
       alert("Ти нічого не купила!!!!!!!!!!");
     }
   }
 
-  function orderNumber() {  
-      let genOrder = [];
-      const numbers = "0123456789";
-      for (let i = 0; i < 25; i++) {
-        genOrder.push(Math.floor(Math.random() * numbers.length));
-      
-      }
-      localStorage.setItem("orderNumber", genOrder.join(""));
+  function orderNumber() {
+    let genOrder = [];
+    const numbers = "0123456789";
+    for (let i = 0; i < 25; i++) {
+      genOrder.push(Math.floor(Math.random() * numbers.length));
+    }
+    localStorage.setItem("orderNumber", genOrder.join(""));
+  }
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setForm({ [name]: value });
   }
 
   function del(id) {
     // alert('Куда видаляєш? Купляй давай')
-    const abc = cart.splice(id, 1)
-    console.log()
-    setCounter(prevCount => prevCount - 1)
-    setPrice(prevPrice => prevPrice - abc[0].price)
+    const abc = cart.splice(id, 1);
+    setCounter((prevCount) => prevCount - 1);
+    setPrice((prevPrice) => prevPrice - abc[0].price);
   }
 
   const info = data.map((item) => {
     return (
       <div className="containeri">
-          <p className="discount">{item.oldPrice + 1 === '1'? '' : `${Math.ceil(Math.abs(100 - (item.price*100)/item.oldPrice))}%`}</p>
+        <p className="discount">
+          {item.oldPrice + 1 === "1"
+            ? ""
+            : `${Math.ceil(
+                Math.abs(100 - (item.price * 100) / item.oldPrice)
+              )}%`}
+        </p>
         <img src={item.image} className="images"></img>
         <p className="name">{item.name}</p>
         <p className="description">{item.description}</p>
         <div className="priceBuy">
-          <p className="price">{item.price}<span className="priceCart">₴</span></p>
+          <p className="price">
+            {item.price}
+            <span className="priceCart">₴</span>
+          </p>
           <p className="oldPrice">{item.oldPrice}</p>
           <img
             onClick={() => addTo(item.id)}
@@ -86,11 +98,7 @@ export default function Store() {
         <div className="orders">
           {prevCart.dataOrder}
           <span className="priceCart">{prevCart.price} ₴</span>
-          <img
-            className="trash"
-            onClick={() => del(i)}
-            src={trash}
-          ></img>
+          <img className="trash" onClick={() => del(i)} src={trash}></img>
         </div>
       </div>
     );
@@ -101,10 +109,13 @@ export default function Store() {
       <div>
         <div className="containerCart">
           <div className="containerr">
-          <div className="ordersBuy">{prevCart.dataOrder}</div>
+            <div className="ordersBuy">{prevCart.dataOrder}</div>
           </div>
           <div className="description">{prevCart.description}</div>
-          <div className="priceCartBuy">{prevCart.price}<span className="priceCart">₴</span></div>
+          <div className="priceCartBuy">
+            {prevCart.price}
+            <span className="priceCart">₴</span>
+          </div>
         </div>
       </div>
     );
@@ -114,34 +125,73 @@ export default function Store() {
     <div>
       {pay ? (
         <div className="containerOrder">
-          <p className="orderNumb">Замовлення №{localStorage.getItem("orderNumber")}</p>
-          {cartsBuy}
-            <p className="priceOrder">
-          <span className="price">{price}<span className="priceCart">₴</span></span> 
+          <p className="orderNumb">
+            Замовлення №{localStorage.getItem("orderNumber")}
           </p>
+          {cartsBuy}
+          {form ? (
+            <div className="gift">
+              {form.giftValue === "nothing" ? "" : form.giftValue}
+            </div>
+          ) : (
+            ""
+          )}
+          <p className="priceOrder">
+            <span className="price">
+              {price}
+              <span className="priceCart">₴</span>
+            </span>
+          </p>
+          {price > 3000 ? (
+            <form>
+              <input
+                type="radio"
+                id="cover"
+                name="giftValue"
+                value="cover"
+                onChange={handleChange}
+              />
+              <label htmlFor="cover">Коврик для Таро</label>
+              <br />
+
+              <input
+                type="radio"
+                id="nothing"
+                name="giftValue"
+                value="nothing"
+                onChange={handleChange}
+              />
+              <label htmlFor="nothing">Нічого не треба</label>
+              <br />
+            </form>
+          ) : (
+            ""
+          )}
           <div className="ag">
-          <button className="disagree" onClick={setOrder}>
+            <button className="disagree" onClick={setOrder}>
               Назад
             </button>
             <button className="agree">Замовити</button>
-
           </div>
         </div>
       ) : (
         <div className="containerAll">
-          
           <div className="containerBasket">
-          <p className="cart">Корзинка</p>
+            <p className="cart">Корзинка</p>
             {carts}
-            {counter>0? <button
-              className="order"
-              onClick={() => {
-                setOrder();
-                orderNumber();
-              }}
-            >
-              В кошик
-            </button> : ''}
+            {counter > 0 ? (
+              <button
+                className="order"
+                onClick={() => {
+                  setOrder();
+                  orderNumber();
+                }}
+              >
+                В кошик
+              </button>
+            ) : (
+              ""
+            )}
           </div>
           <div className="containerInfo">{info}</div>
         </div>
