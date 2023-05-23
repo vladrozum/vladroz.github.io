@@ -1,9 +1,9 @@
 import { Outlet, Link } from "react-router-dom";
 
-export default function Layout(){
+export default function Layout(props){
   return (
     <>
-      <nav >
+      <nav className={`${props.on? 'yes' : ''}`}>
         <ul className="nav">
           <li>
             <Link to="/" className="urls">Тести</Link>

@@ -8,16 +8,19 @@ import Store from "./store";
 
 
 export default function App() {
-
+  const [make, setMake] = React.useState(false)
+  function change(make){
+    setMake(make)
+  }
 
   return (
     <div>
 <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout on={make}/>}>
           <Route index element={<Main />} />
           <Route path="chatGPT" element={<ChatGPT />} />
-          <Route path="store" element={<Store />} />
+          <Route path="store" element={<Store on={change}/>} />
 
         </Route>
       </Routes>
