@@ -1,34 +1,35 @@
 import React from "react";
 const { Configuration, OpenAIApi } = require("openai");
 
-
 export default function ChatGPT() {
   const [query, setQuery] = React.useState();
   const [reply, setReply] = React.useState();
   const [isSubmit, setSubmit] = React.useState(false);
   const [receive, setRecieve] = React.useState(false);
   const [sec, setSec] = React.useState(0);
-  const [input, setInput] = React.useState(true)
+  const [input, setInput] = React.useState(true);
 
   async function gpt(event) {
     event.preventDefault();
     try {
-      const api = decodeURIComponent((window.atob(process.env.REACT_APP_SECRET))).slice(1, -1)
+      const api = decodeURIComponent(
+        window.atob(process.env.REACT_APP_SECRET)
+      ).slice(1, -1);
       const configuration = new Configuration({
-        apiKey: api
+        apiKey: api,
       });
       const openai = new OpenAIApi(configuration);
       if (query && query.trim().length > 0) {
         setSec(0);
         setSubmit(true);
-  
+
         const response = await openai.createCompletion({
           model: "text-davinci-003",
           prompt: query,
           max_tokens: 512,
           temperature: 0.5,
         });
-  
+
         if (response.status === 200 && response.data.choices.length > 0) {
           setReply(response.data.choices[0].text);
           setRecieve(true);
@@ -37,12 +38,11 @@ export default function ChatGPT() {
           setRecieve(true);
         }
       } else {
-        setInput(false)
+        setInput(false);
       }
-      
-    } catch{
-      setReply('Карти втомилися! Спробуйте пізніше')
-      setRecieve(true)
+    } catch {
+      setReply("Карти втомилися! Спробуйте пізніше");
+      setRecieve(true);
     }
   }
 
@@ -50,7 +50,7 @@ export default function ChatGPT() {
     setRecieve(false);
     setSec(0);
     setSubmit(false);
-    setInput(true)
+    setInput(true);
   }
 
   function newq() {
@@ -58,7 +58,7 @@ export default function ChatGPT() {
     setSec(0);
     setSubmit(false);
     setQuery("");
-    setInput(true)
+    setInput(true);
   }
 
   React.useEffect(() => {
@@ -96,9 +96,9 @@ export default function ChatGPT() {
                 className="image"
                 src="https://www.tarotcardmeanings.net/images/tarotcards-large/tarot-magician.jpg"
               ></img>
-                <button className="buttongpt" onClick={refresh}>
-                  Запитати ще раз
-                </button>
+              <button className="buttongpt" onClick={refresh}>
+                Запитати ще раз
+              </button>
             </div>
           );
         } else {
@@ -107,10 +107,13 @@ export default function ChatGPT() {
               <label>
                 <p className="question">Задайте питання картам:</p>
                 <input
-                  className={`input-${input? 'true' : 'false'}`}
+                  className={`input-${input ? "true" : "false"}`}
                   type="text"
                   value={query}
-                  onChange={(e) => setQuery(e.target.value)}
+                  onChange={(e) => {
+                    setQuery(e.target.value);
+                    setInput(true);
+                  }}
                 />
               </label>
               <input type="submit" className="sumbit" />

@@ -28,7 +28,6 @@ export default function Main() {
     generateAllQuestions()[0].answerOptions.sort(() => 0.5 - Math.random()),
   ]);
 
-  
   // Choose 3 wrong random answer options
   function random() {
     const categories = ["life", "business", "advice", "dayCard"];
@@ -38,7 +37,6 @@ export default function Main() {
     const choose = dataArray[randomNumber2].answers[chooseCategory];
     return choose;
   }
-
 
   // Choose 1 right answer options
   function chooseRandomAnswer() {
@@ -80,9 +78,8 @@ export default function Main() {
       generateAllQuestions()[0].answerOptions.sort(() => 0.5 - Math.random()),
     ]);
     setRight(false);
-    setQuest(generateAllQuestions())
+    setQuest(generateAllQuestions());
   }
-
 
   // Check answer
   function checkAnswer(isCorrect, id) {
@@ -92,8 +89,7 @@ export default function Main() {
     } else if (!isCorrect) {
       setGame(true);
     }
-  }    
-
+  }
 
   // Refresh after endgame
   function refresh() {
@@ -123,38 +119,44 @@ export default function Main() {
   return (
     <div>
       {game ? (
-        <div className="container">
-          <div className={`whats-true`}>
-            <p className="lose">Ви програли</p>
-            <p>      
-              Правильних відповідей:
-              <span className="rightAnswer"> {number}</span>
-            </p>
-            <p>
-              Витрачено часу: <span className="rightAnswer">{counter} (Середнє: {number === 0 ? 0 : Math.ceil(counter/number)} на одне питання)</span>
-            </p>
-            <div className="button-next">
-              <button onClick={refresh} className="but">
-                Почати знову
-              </button>
+        <div className="containerOrder">
+          <div className="container">
+            <div className={`whats-true`}>
+              <p className="lose">Ви програли</p>
+              <p>
+                Правильних відповідей:
+                <span className="rightAnswer"> {number}</span>
+              </p>
+              <p>
+                Витрачено часу:{" "}
+                <span className="rightAnswer">
+                  {counter} (Середнє:{" "}
+                  {number === 0 ? 0 : Math.ceil(counter / number)} на одне
+                  питання)
+                </span>
+              </p>
+              <div className="button-next">
+                <button onClick={refresh} className="but">
+                  Почати знову
+                </button>
+              </div>
             </div>
-          </div>
+          </div>{" "}
         </div>
       ) : (
         <div className="container">
-          <div className="container2">
-            <p className="number">
-              Вгадала: {number}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Час: {counter}
-            </p>
-          </div>
-          <img src={quest[0].url} alt="" className="images"></img>
+          <p className="number">
+            Вгадала: {number}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Час: {counter}
+          </p>
+          <img src={quest[0].url} alt="" className="imagess"></img>
           <div className={`button-next`}>
             {set && (
               <button onClick={generateQuestions} className="but">
                 Наступне питання
               </button>
             )}
-          </div>  
+          </div>
           <div className="question-container">
             {questions[0].map((question) => (
               <button
