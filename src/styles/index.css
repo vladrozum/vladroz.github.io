@@ -5,12 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to right,
     #d4b755 0%,
     #48c461 51%,
     #e0b320 100%
-  );
+  ); */
   scroll-behavior: smooth;
   scrollbar-width: none;
 }

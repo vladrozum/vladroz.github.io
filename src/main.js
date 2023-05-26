@@ -2,6 +2,11 @@ import React from "react";
 import data from "./data/data";
 
 export default function Main() {
+
+
+  React.useEffect(() => {
+    document.body.style.backgroundImage = "linear-gradient(to right, " + "#d4b755" +  ", " + "#48c461" + ", " + "#e0b320" + ")";
+});
   // data
   const [dataArray, setData] = React.useState(data);
 

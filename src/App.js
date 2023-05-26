@@ -4,6 +4,7 @@ import ChatGPT from "./chatgpt"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./layout";
 import Store from "./store";
+// import Zaika from "./zaika";
 
 
 
@@ -22,6 +23,7 @@ export default function App() {
           <Route index element={<Main />} />
           <Route path="chatGPT" element={<ChatGPT />} />
           <Route path="store" element={<Store on={change}/>} />
+          {/* <Route path="zaika" element={<Zaika />}      /> */}
 
         </Route>
       </Routes>
