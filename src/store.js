@@ -182,6 +182,8 @@ export default function Store({ on }) {
 
   return (
     <div>
+            <a href="/products" onClick={()=>on(true)}>Зайка</a>
+
       {(() => {
         if (pay) {
           return (

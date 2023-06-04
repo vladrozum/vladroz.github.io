@@ -1,0 +1,358 @@
+body {
+  background-color: rgb(231, 236, 241);
+  margin: auto;
+}
+
+
+@font-face {
+  font-family: fontZaika;
+  src: url(fonts/AmaticSC-Regular.ttf);
+}
+
+@font-face {
+  font-family: fontName;
+  src: url(fonts/MontserratAlternates-Black.ttf);
+}
+
+@font-face {
+  font-family: fontWhy;
+  src: url(fonts/FiraSans-Black.ttf);
+}
+
+@font-face {
+  font-family: fontAndrei;
+  src: url(fonts/Pangolin-Regular.ttf);
+}
+
+@font-face {
+  font-family: fontPrice;
+  src: url(fonts/Ubuntu-Regular.ttf);
+}
+
+
+.navZaika{
+  display: flex;
+    background-color: white;
+    font-size: 28px;
+    align-items: center;
+
+}
+
+.navZaika>ul{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  list-style: none; 
+}
+
+.Links{
+  text-decoration: none;
+  color: #1a1609;
+}
+
+
+.Links:hover{
+  color: #b4a679;
+  font-size: 30px;
+
+}
+
+
+.containerSunflower{
+  margin-bottom: 200px;
+}
+
+
+.imageSunflower{
+  width: 100%;
+  height: 700px;
+  position: absolute;
+  filter: brightness(50%);
+}
+
+.a{
+  align-items: center;
+  display: flex;
+  text-decoration: none;
+  color: #1a1609;
+}
+
+.zaika{
+  left: 50%;
+  position: relative;
+  width: 50%;
+  height: 900px;
+  margin-top: -40px;
+  mix-blend-mode:hard-light;
+
+}
+
+
+.really{
+  font-size: 130px;
+  position: relative;
+  margin-top: -600px;
+  padding-left: 100px;
+  color: #f5f5f5;
+  font:900;
+  font-family: fontZaika;
+
+}
+
+
+.seed{
+  width: 30px;
+  height: 30px;
+  margin-left: 30px;
+}
+
+.nameZaika{
+  font-family: fontName;
+}
+
+.why{
+  padding-top: 30px;
+  text-align: center;
+  font-size: 28px;
+  font-family: fontName;
+  position: relative;
+  color: rgb(255, 0, 0);
+}
+
+
+.imgFun{
+  width: 100%;
+  height: 670px;
+  position: relative;
+  filter: brightness(20%);
+}
+
+.whyChoose{
+  padding-top: 20px;
+display: flex;
+  position: relative;
+  justify-content: space-around;
+  font-size: 35px;
+  list-style: none;
+  color: #d7d7d7;
+  font-family: fontWhy;
+}
+
+
+.whyContainer{
+  justify-content: space-around;
+  display: flex;
+  position: relative;
+}
+
+
+.left{
+  left: 100%;
+  font-family: fontAndrei;
+  color: azure;
+  font-size: 21px;
+}
+
+
+.imgFun{
+  position: absolute;
+}
+
+
+.inter{
+  text-align: center;
+  font-size: 30px;
+  font-family: fontName;
+}
+
+
+.bestZaika{
+  text-align: center;
+}
+
+.sertificates{
+  display: flex;
+  justify-content: center;
+}
+
+
+.imgBest{
+  width: 170px;
+  height: 200px;
+  filter:contrast(50%);
+}
+
+
+.containerInfo1{
+  width: 100%;
+  height: 300px;
+  background-color: aliceblue;
+}
+
+.imageProducts{
+  width: 300px;
+  height: 310px;
+  mix-blend-mode: multiply;
+}
+
+.containerProducts{
+  padding-top: 60px;
+  display: grid;
+  grid-template-columns: 10px 10px 10px;
+  row-gap: 50px;
+  column-gap: 310px;
+
+  justify-content: center ;
+  margin-right: 200px;
+}
+
+
+.container1{
+  margin-left: 40px;
+  background-color: #f0f6f5;
+  width: 300px;
+  height: 500px;
+}
+
+
+.button-active .button-disable{
+  font-family: fontPrice;
+}
+
+.priceInfo {
+  display: flex;
+  margin-right: 20px;
+}
+
+.price{
+  margin-right : 20px;
+  margin-left: 20px;
+  font-size: 20px;
+  font-family: fontPrice;
+  width: 100px
+}
+
+ 
+.button-active:hover{
+  cursor: pointer;
+}
+ 
+.button-disable:hover{
+  cursor: pointer;
+} 
+
+
+.navShop{
+  width: 300px;
+  height: 50px;
+  margin-top: 60px;
+  margin-left: 30px;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
+.cart{
+  width: 50px;
+  height: 50px;
+  mix-blend-mode: multiply;
+  margin-right: 20px
+}
+
+
+.filterNav{
+  padding-left: 20px;
+  font-family: fontAndrei;
+  position: relative;
+  font-size: 25px;
+  display: flex;
+  background-color: #d7d7d7;
+  width: 180px;
+  height: 300px;
+}
+
+
+.search{
+  border: none;
+  width: 300px;
+  height: 40px;
+  border-radius: 20px;
+  padding-left: 20px;
+}
+
+
+.filter{
+  position: absolute;
+  width: 160px;
+  text-align: center;
+  align-items: center;
+  color: #651f1f;
+  font-size: 20px;
+  
+}
+
+
+.priceFilter{
+  font-size: 19px;
+  margin-top: 80px;
+  margin-right: 30px;
+}
+
+
+.buttonFilter{
+  border: none;
+  background-color: #f2fbfc;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.buttonFilter:hover{
+  background-color: #e4dcdc;
+}
+
+.buttonFilter:active{
+  background-color: #fbf5e2;
+}
+
+
+.arrow{
+  width: 10px;
+  height: 10px;
+  mix-blend-mode: multiply;
+  cursor: grab;
+}
+
+
+.nav{
+  display: flex;
+  align-items:center ;
+  justify-content: space-between;
+  background-color: #e4dcdc;
+  height: 50px;
+}
+
+
+.filterShow{
+  margin-left: 40px;
+  font-family: fontZaika;
+}
+
+
+.filterr{
+  cursor:grab;
+}
+
+
+.filterButton{
+  width: 90px;
+  height: 50px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+}
