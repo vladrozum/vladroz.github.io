@@ -1,15 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.039db370.css",
-    "main.js": "/static/js/main.4318ce6a.js",
+    "main.css": "/static/css/main.850fb1f4.css",
+    "main.js": "/static/js/main.c0f2c4af.js",
     "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
+    "static/media/Pangolin-Regular.ttf": "/static/media/Pangolin-Regular.a68c3601b83d13dd020f.ttf",
+    "static/media/FiraSans-Black.ttf": "/static/media/FiraSans-Black.5f1a9af6b7a34f7fee63.ttf",
+    "static/media/Ubuntu-Regular.ttf": "/static/media/Ubuntu-Regular.d89eda6750f6960a7456.ttf",
+    "static/media/MontserratAlternates-Black.ttf": "/static/media/MontserratAlternates-Black.694e26785f332a48b2b7.ttf",
+    "static/media/AmaticSC-Regular.ttf": "/static/media/AmaticSC-Regular.fcbad0887ed49b623c0f.ttf",
     "index.html": "/index.html",
-    "main.039db370.css.map": "/static/css/main.039db370.css.map",
-    "main.4318ce6a.js.map": "/static/js/main.4318ce6a.js.map",
+    "main.850fb1f4.css.map": "/static/css/main.850fb1f4.css.map",
+    "main.c0f2c4af.js.map": "/static/js/main.c0f2c4af.js.map",
     "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.039db370.css",
-    "static/js/main.4318ce6a.js"
+    "static/css/main.850fb1f4.css",
+    "static/js/main.c0f2c4af.js"
   ]
 }
